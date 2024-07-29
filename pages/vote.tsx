@@ -19,6 +19,9 @@ const Vote = () => {
       if (!currentUser) {
         router.push("/login");
       } else {
+        if (currentUser.email === "admin@example.com") {
+          router.push("/admin");
+        }
         setUser(currentUser);
         checkUserVoteStatus(currentUser.uid);
       }
@@ -80,7 +83,8 @@ const Vote = () => {
             alt="Image A"
             onClick={() => setSelectedImage("A")}
             className={`${
-              selectedImage !== "A" ? "dark:invert-0" : "dark:invert"
+              selectedImage === "A" &&
+              "scale-95 opacity-90 border-2 border-green-400"
             } cursor-pointer border rounded`}
             width={200}
             height={24}
@@ -91,7 +95,8 @@ const Vote = () => {
             alt="Image B"
             onClick={() => setSelectedImage("B")}
             className={`${
-              selectedImage !== "B" ? "dark:invert-0" : "dark:invert"
+              selectedImage === "B" &&
+              "scale-95 opacity-90 border-2 border-green-400"
             } cursor-pointer border rounded`}
             width={200}
             height={24}
@@ -102,7 +107,8 @@ const Vote = () => {
             alt="Image C"
             onClick={() => setSelectedImage("C")}
             className={`${
-              selectedImage !== "C" ? "dark:invert-0" : "dark:invert"
+              selectedImage === "C" &&
+              "scale-95 opacity-90 border-2 border-green-400"
             } cursor-pointer border rounded`}
             width={200}
             height={24}
@@ -113,7 +119,8 @@ const Vote = () => {
             alt="Image D"
             onClick={() => setSelectedImage("D")}
             className={`${
-              selectedImage !== "D" ? "dark:invert-0" : "dark:invert"
+              selectedImage === "D" &&
+              "scale-95 opacity-90 border-2 border-green-400"
             } cursor-pointer border rounded`}
             width={200}
             height={24}
