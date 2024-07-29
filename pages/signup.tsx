@@ -38,9 +38,15 @@ const Signup = () => {
           onChange={e => setPassword(e.target.value)}
           className="border p-2 w-full mb-2 text-black outline-none"
         />
-        <button onClick={handleSignup} className="bg-blue-500 text-white p-2">
+        <button
+          onClick={handleSignup}
+          className="bg-blue-500 text-white p-2 mr-2"
+        >
           Sign Up
         </button>
+        <a href="/login" className="underline p-2">
+          Sign In
+        </a>
       </div>
     </div>
   );

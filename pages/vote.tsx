@@ -15,13 +15,13 @@ const Vote = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (user?.email === "admin@example.com") {
-      router.push("/admin");
-    }
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       if (!currentUser) {
         router.push("/login");
       } else {
+        if (currentUser.email === "admin@example.com") {
+          router.push("/admin");
+        }
         setUser(currentUser);
         checkUserVoteStatus(currentUser.uid);
       }

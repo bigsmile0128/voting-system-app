@@ -39,8 +39,11 @@ const Login = () => {
           className="border p-2 w-full mb-2 text-black outline-none"
         />
         <button onClick={handleLogin} className="bg-blue-500 text-white p-2">
-          Login
+          Sign In
         </button>
+        <a href="/signup" className="underline p-2">
+          Sign Up
+        </a>
       </div>
     </div>
   );
