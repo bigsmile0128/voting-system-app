@@ -1,8 +1,7 @@
 // pages/vote.tsx
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import firebase from "firebase/app";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import Image from "next/image";
 
@@ -10,7 +9,7 @@ import { auth, firestore } from "../lib/firebase";
 
 const Vote = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [user, setUser] = useState<firebase.User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string>("");
   const [hasVoted, setHasVoted] = useState<boolean>(false);
   const router = useRouter();
@@ -62,13 +61,17 @@ const Vote = () => {
   };
 
   if (!user) return <p>Loading...</p>;
+  if (user === null) return <p>Please log in to vote.</p>;
 
   return (
     <div className="w-full h-screen flex justify-center items-center p-4">
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-xl font-bold text-center">
-          Please vote for your favorite image.
+        <h1 className="text-3xl font-bold text-center mb-4">
+          {user.email}'s Votting
         </h1>
+        <h6 className="text-lg text-center">
+          Please vote for your favorite image.
+        </h6>
         {hasVoted && <p className="text-green-500">You have already voted!</p>}
         {error && <p className="text-red-500">{error}</p>}
         <div className="grid grid-cols-2 gap-4 mt-4">
